@@ -1,29 +1,21 @@
 # Contributing
 
-## The easiest possible first PR
+## Your first PR
 
-Add **one thing**.
+Add one thing to the room.
 
-That can be code, art, audio, writing, a model, an animation, a level fragment, a mechanic, an item, a character, or a tiny experiment.
+It can be code, art, audio, writing, UI, animation, a prop, a mechanic, or something much stranger.
 
 ### Workflow
 
-1. Fork the repository.
-2. Create a branch such as `add-weird-fishing-rod`.
-3. Put your contribution in the most sensible existing folder. If none exists, create one.
-4. Avoid rewriting unrelated systems.
-5. Add a short `README.md` beside larger contributions explaining what it is and how to test it.
-6. Open a pull request with screenshots/video if useful.
+1. Fork the repo.
+2. Make a branch.
+3. Add one thing.
+4. Test that the existing room still loads.
+5. Open a pull request.
 
-### Pull request description
+Tell us what you added, how to test it, and where any third-party assets came from.
 
-Tell us:
-
-- What did you add?
-- How do we try it?
-- Does it depend on anything else?
-- Did you create all included assets? If not, include the license/source.
-
-### Main rule
+## Main rule
 
 Make the monster bigger without killing it.
