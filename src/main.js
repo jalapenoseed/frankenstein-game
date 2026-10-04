@@ -1,3 +1,5 @@
+import { occluders, drawShadows, shadeCircle, flicker } from "./lighting.js";
+
 const canvas = document.querySelector("#screen");
 const ctx = canvas.getContext("2d");
 const status = document.querySelector("#status");
@@ -7,6 +9,9 @@ const bulb = { x: 480, y: 180, on: false };
 const keys = new Set();
 let nearBulb = false;
 let last = performance.now();
+let light = 1;
+
+occluders.push(player);
 
 addEventListener("keydown", e => {
   const key = e.key.toLowerCase();
@@ -53,8 +58,8 @@ function drawRoom() {
 
   if (bulb.on) {
     const glow = ctx.createRadialGradient(bulb.x, bulb.y+18, 10, bulb.x, bulb.y+90, 310);
-    glow.addColorStop(0,"rgba(255,244,190,.55)");
-    glow.addColorStop(.35,"rgba(255,235,165,.20)");
+    glow.addColorStop(0,`rgba(255,244,190,${.55*light})`);
+    glow.addColorStop(.35,`rgba(255,235,165,${.20*light})`);
     glow.addColorStop(1,"rgba(255,235,165,0)");
     ctx.fillStyle = glow;
     ctx.fillRect(70,90,820,360);
@@ -90,6 +95,7 @@ function drawPlayer() {
   ctx.arc(player.x,player.y,player.r,0,Math.PI*2);
   ctx.fillStyle = bulb.on ? "#d8d3c4" : "#3c3c3c";
   ctx.fill();
+  if (bulb.on) shadeCircle(ctx, player.x, player.y, player.r, { x: bulb.x, y: 180 }, light);
 
   if (nearBulb) {
     ctx.font = "16px monospace";
@@ -102,7 +108,9 @@ function frame(now) {
   const dt = Math.min((now-last)/1000,.05);
   last = now;
   update(dt);
+  light = flicker(now);
   drawRoom();
+  if (bulb.on) drawShadows(ctx, { x: bulb.x, y: 180 }, light);
   drawBulb();
   drawPlayer();
   requestAnimationFrame(frame);
