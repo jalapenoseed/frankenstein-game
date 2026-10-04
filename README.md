@@ -23,6 +23,19 @@ Controls:
 - WASD / Arrow keys — move
 - E — interact with the lightbulb
 
+## Lighting
+
+When the bulb is on, things cast soft shadows that move with them (`src/lighting.js`).
+To make something you add cast a shadow, push it into `occluders`:
+
+```js
+import { occluders } from "./lighting.js";
+occluders.push({ x: 300, y: 350, r: 20 });                              // circle
+occluders.push({ points: [[600,300],[660,300],[660,340],[600,340]] });  // convex polygon
+```
+
+Push the object itself and its shadow will follow it as it moves.
+
 ## First contribution
 
 Fork the repo and add **one thing**.
