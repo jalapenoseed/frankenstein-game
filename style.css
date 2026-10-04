@@ -1,0 +1,5 @@
+html,body{margin:0;height:100%;background:#050505;color:#eee;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+body{display:grid;place-items:center}
+#game{width:min(100vw,1100px);padding:16px;box-sizing:border-box}
+canvas{width:100%;height:auto;display:block;background:#000;border:1px solid #222;image-rendering:pixelated}
+#hud{display:flex;justify-content:space-between;gap:16px;padding-top:10px;font-size:14px;opacity:.8}
